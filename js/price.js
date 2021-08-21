@@ -1,14 +1,68 @@
-// function getInputValue() {
-//     const initialPrice = document.getElementById("add-value");
-    
-// }
-// add-value.addEventListener 
-// const addValue = document.getElementById("add-value");
-// const addSecondValue = document.getElementById("add-second-value");
-// console.log(addValue,addSecondValue);
+const basePrice = document.getElementById("base-price");
+const getGrandTotal = document.getElementById("total");
+const getBigTotal = document.getElementById("big-total");
+function updateTotal(){
+    const memoryCharge = parseFloat(memoryValue.innerText);
+    const productPrice = parseFloat(basePrice.innerText);
+    const storageCharge = parseFloat(storageValue.innerText);
+    const deliveryCharge = parseFloat(shippingValue.innerText);
+    const grandTotal = memoryCharge + storageCharge + deliveryCharge + productPrice;
+    getGrandTotal.innerText = grandTotal;
+    getBigTotal.innerText = grandTotal;
+}
 
-document.getElementById("add-value").addEventListener("click", function(){
-    const inputValue = document.getElementById("price");
-    const getPrice = inputValue.innerText;
-    inputValue.innerText = getPrice;
+const btn1 = document.getElementById("first-memory-value");
+const btn2 = document.getElementById("second-memory-value");
+const memoryValue = document.getElementById("memory-price");
+btn1.addEventListener("click", function(){
+    memoryValue.innerText = "0";
+    updateTotal();
 })
+btn2.addEventListener("click", function(){
+    memoryValue.innerText = "180";
+    updateTotal();
+})
+const btn3 = document.getElementById("first-storage-value");
+const btn4 = document.getElementById("second-storage-value");
+const btn5 = document.getElementById("third-storage-value");
+const storageValue = document.getElementById("storage-price");
+btn3.addEventListener("click", function(){
+    storageValue.innerText = "0";
+    updateTotal();
+})
+btn4.addEventListener("click", function(){
+    storageValue.innerText = "180";
+    updateTotal();
+})
+btn5.addEventListener("click", function(){
+    storageValue.innerText = "360";
+    updateTotal();
+})
+const btn6 = document.getElementById("first-shipping-value");
+const btn7 = document.getElementById("second-shipping-value");
+const shippingValue = document.getElementById("delivery-price");
+btn6.addEventListener("click", function(){
+    shippingValue.innerText = "0";
+    updateTotal();
+})
+btn7.addEventListener("click", function(){
+    shippingValue.innerText = "20";
+    updateTotal();
+})
+
+const btn8 = document.getElementById("coupon-input");
+btn8.addEventListener("click", function(){
+    const couponField = document.getElementById("coupon-code");
+    const applyCoupon = couponField.value;
+    var finalTotal = updateTotal();
+    if(applyCoupon == "stevekaku"){
+        finalTotal = grandTotal * 0.2;
+    }
+})
+// document.getElementById("coupon-input").addEventListener("click", function(){
+//     const couponField = document.getElementById("coupon-code");
+//     const applyCoupon = couponField.value;
+//     if(applyCoupon == 'stevekaku'){
+//         console.log("valid code");
+//     }
+// })
