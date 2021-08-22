@@ -1,6 +1,7 @@
 const basePrice = document.getElementById("base-price");
 const getGrandTotal = document.getElementById("total");
 const getBigTotal = document.getElementById("big-total");
+var couponTotal = 0;
 function updateTotal(){
     const memoryCharge = parseFloat(memoryValue.innerText);
     const productPrice = parseFloat(basePrice.innerText);
@@ -8,7 +9,8 @@ function updateTotal(){
     const deliveryCharge = parseFloat(shippingValue.innerText);
     const grandTotal = memoryCharge + storageCharge + deliveryCharge + productPrice;
     getGrandTotal.innerText = grandTotal;
-    getBigTotal.innerText = grandTotal;
+    getBigTotal.innerText = grandTotal; 
+    couponTotal = 1 * grandTotal;
 }
 
 const btn1 = document.getElementById("first-memory-value");
@@ -31,11 +33,11 @@ btn3.addEventListener("click", function(){
     updateTotal();
 })
 btn4.addEventListener("click", function(){
-    storageValue.innerText = "180";
+    storageValue.innerText = "100";
     updateTotal();
 })
 btn5.addEventListener("click", function(){
-    storageValue.innerText = "360";
+    storageValue.innerText = "180";
     updateTotal();
 })
 const btn6 = document.getElementById("first-shipping-value");
@@ -50,19 +52,15 @@ btn7.addEventListener("click", function(){
     updateTotal();
 })
 
+
 const btn8 = document.getElementById("coupon-input");
 btn8.addEventListener("click", function(){
     const couponField = document.getElementById("coupon-code");
     const applyCoupon = couponField.value;
-    var finalTotal = updateTotal();
     if(applyCoupon == "stevekaku"){
-        finalTotal = grandTotal * 0.2;
+        updateTotal();
+        getGrandTotal.innerText = couponTotal * 0.8;
+        getBigTotal.innerText = couponTotal * 0.8;
     }
+    couponField.value = "";
 })
-// document.getElementById("coupon-input").addEventListener("click", function(){
-//     const couponField = document.getElementById("coupon-code");
-//     const applyCoupon = couponField.value;
-//     if(applyCoupon == 'stevekaku'){
-//         console.log("valid code");
-//     }
-// })
